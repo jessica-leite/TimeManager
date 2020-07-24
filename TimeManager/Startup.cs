@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TimeManager.Domain;
 using TimeManager.Domain.Context;
+using TimeManager.DTO;
+using TimeManager.Service;
 
 namespace TimeManager
 {
@@ -30,6 +34,18 @@ namespace TimeManager
             services.AddDbContext<TimeManagerContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TimeManagerConnection")));
 
             services.AddControllers();
+
+            services.AddDbContext<TimeManagerContext>();
+
+            services.AddScoped<UserService>();
+
+            //services.AddAutoMapper(typeof(User), typeof(UserDTO));
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<UserDTO, User>();
+            });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
