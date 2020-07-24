@@ -30,5 +30,13 @@ namespace TimeManager.Controllers
         {
             return Ok(_service.GetById(id));
         }
+
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            return Ok(_service.GetAll());
+        }
+
+   
     }
 }

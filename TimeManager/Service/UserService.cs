@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TimeManager.Domain;
 using TimeManager.Domain.Context;
 using TimeManager.DTO;
@@ -34,6 +36,16 @@ namespace TimeManager.Service
             userModel.CreationDate = DateTime.Now;
 
             return userModel;
+        }
+
+        public List<UserDTO> GetAll()
+        {
+            var users = _context.User.ToList();
+
+            var usersDTO = new List<UserDTO>();
+            users.ForEach(u => { usersDTO.Add(_mapper.Map<UserDTO>(u)); });
+
+            return usersDTO;
         }
 
         public UserDTO GetById(int id)
