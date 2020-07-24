@@ -48,6 +48,12 @@ namespace TimeManager.Service
             return usersDTO;
         }
 
+        public void Remove(int id)
+        {
+            _context.Remove(new User { Id = id});
+            _context.SaveChanges();
+        }
+
         public UserDTO GetById(int id)
         {
             var user = _context.Find<User>(id);

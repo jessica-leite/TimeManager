@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using TimeManager.DTO;
 using TimeManager.Service;
 
@@ -37,6 +36,11 @@ namespace TimeManager.Controllers
             return Ok(_service.GetAll());
         }
 
-   
+        [HttpDelete("{id}")]
+        public ActionResult Remove(int id)
+        {
+            _service.Remove(id);
+            return NoContent();
+        }
     }
 }
