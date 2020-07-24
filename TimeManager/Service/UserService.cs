@@ -48,6 +48,12 @@ namespace TimeManager.Service
             return usersDTO;
         }
 
+        public void Update(UserDTO user)
+        {
+            _context.Update(_mapper.Map<User>(user));
+            _context.SaveChanges();
+        }
+
         public void Remove(int id)
         {
             _context.Remove(new User { Id = id});

@@ -42,5 +42,12 @@ namespace TimeManager.Controllers
             _service.Remove(id);
             return NoContent();
         }
+
+        [HttpPut]
+        public ActionResult Update([FromBody] UserDTO user)
+        {
+            _service.Update(user);
+            return Ok(user);
+        }
     }
 }
