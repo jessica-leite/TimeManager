@@ -16,7 +16,7 @@ namespace TimeManager.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Create([FromBody] UserDTO user)
         {
             _service.Add(user);
@@ -25,9 +25,10 @@ namespace TimeManager.Controllers
             return Created(uri, user);
         }
 
-        public ActionResult GetById()
+        [HttpGet("{id}")]
+        public ActionResult GetById(int id)
         {
-            throw new NotImplementedException();
+            return Ok(_service.GetById(id));
         }
     }
 }

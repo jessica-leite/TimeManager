@@ -39,10 +39,11 @@ namespace TimeManager
 
             services.AddScoped<UserService>();
 
-            //services.AddAutoMapper(typeof(User), typeof(UserDTO));
+            //services.AddAutoMapper(typeof(User), typeof(UserDTO)); //TODO
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<UserDTO, User>();
+                cfg.CreateMap<User, UserDTO>();
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

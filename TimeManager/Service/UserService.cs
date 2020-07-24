@@ -35,5 +35,12 @@ namespace TimeManager.Service
 
             return userModel;
         }
+
+        public UserDTO GetById(int id)
+        {
+            var user = _context.Find<User>(id);
+
+            return _mapper.Map<UserDTO>(user);
+        }
     }
 }
