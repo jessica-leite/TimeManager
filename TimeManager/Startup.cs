@@ -38,6 +38,7 @@ namespace TimeManager
             services.AddDbContext<TimeManagerContext>();
 
             services.AddScoped<UserService>();
+            services.AddScoped<LoginService>();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
