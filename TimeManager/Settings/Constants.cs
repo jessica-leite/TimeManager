@@ -7,6 +7,6 @@ namespace TimeManager.Settings
 {
     public class Constants
     {
-        public const string JwtSecret = "Abc@123Çmà@#g";
+        public const string JwtSecret = "Abc@123Çmà@#gAbc@123Çmà@#gAbc@123Çmà@#gAbc@123Çmà@#g";
     }
 }
