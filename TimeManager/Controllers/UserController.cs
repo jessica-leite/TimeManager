@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TimeManager.DTO;
 using TimeManager.Service;
 
@@ -30,6 +31,7 @@ namespace TimeManager.Controllers
             return Ok(_service.GetById(id));
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult GetAll()
         {
