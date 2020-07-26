@@ -46,12 +46,19 @@ namespace TimeManager.Service
             return accessToken; 
         }
 
-        public void ResetPassword(ResetPasswordDTO resetPassword)
+        public bool ResetPassword(ResetPasswordDTO resetPassword)
         {
-            var user = _context.User.FirstOrDefault(u => u.Email == resetPassword.Email);
+            var user = _context.User.FirstOrDefault(u => u.Email == resetPassword.Email && u.SecretAnswer == resetPassword.SecretAnswer);
+
+            if (user == null)
+            {
+                return false;
+            }
             user.Password = resetPassword.NewPassword;
 
             _context.SaveChanges();
+
+            return true;
         }
     }
 }

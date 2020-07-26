@@ -12,6 +12,7 @@ namespace TimeManager.Domain
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime CreationDate { get; set; }
+        public string SecretAnswer { get; set; }
 
         public IEnumerable<Activity> Activities { get; set; }
     }

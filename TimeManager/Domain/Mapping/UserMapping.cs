@@ -17,6 +17,9 @@ namespace TimeManager.Domain.Mapping
 
             builder.Property(u => u.CreationDate)
                 .IsRequired();
+
+            builder.Property(u => u.SecretAnswer)
+                .IsRequired();
         }
     }
 }

@@ -21,11 +21,18 @@ namespace TimeManager.Controllers
             return Ok(_service.GetToken(login));
         }
 
+
         [HttpPost("password")]
         public ActionResult ResetPassword([FromBody] ResetPasswordDTO resetPassword)
         {
-            _service.ResetPassword(resetPassword);
-            return Ok();
+            var resetedPassword = _service.ResetPassword(resetPassword);
+
+            if (resetedPassword)
+            {
+                return Ok();
+            }
+
+            return BadRequest(resetPassword);
         }
     }
 }
