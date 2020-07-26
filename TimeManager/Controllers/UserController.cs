@@ -5,6 +5,7 @@ using TimeManager.Service;
 
 namespace TimeManager.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -16,6 +17,7 @@ namespace TimeManager.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Create([FromBody] UserDTO user)
         {
@@ -31,7 +33,6 @@ namespace TimeManager.Controllers
             return Ok(_service.GetById(id));
         }
 
-        [Authorize]
         [HttpGet]
         public ActionResult GetAll()
         {
