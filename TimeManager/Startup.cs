@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using TimeManager.Converters;
 using TimeManager.Domain;
 using TimeManager.Domain.Context;
 using TimeManager.DTO;
@@ -38,18 +40,25 @@ namespace TimeManager
         {
             services.AddDbContext<TimeManagerContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TimeManagerConnection")));
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new TimeConverter());
+                });
 
             services.AddDbContext<TimeManagerContext>();
 
             services.AddScoped<UserService>();
             services.AddScoped<LoginService>();
+            services.AddScoped<ActivityService>();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<UserDTO, User>();
                 cfg.CreateMap<User, UserDTO>();
-            });
+                cfg.CreateMap<ActivityDTO, Activity>();
+                cfg.CreateMap<Activity, ActivityDTO>();
+            }); 
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
 
