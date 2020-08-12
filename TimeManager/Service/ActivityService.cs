@@ -39,7 +39,10 @@ namespace TimeManager.Service
 
         public List<ActivityDTO> GetAll()
         {
-            var activities = _context.Activity.ToList();
+            //TODO update userId
+            var activities = _context.Activity
+                .Where(a => a.UserId == 3)
+                .ToList();
 
             var activitiesDTO = new List<ActivityDTO>();
             activities.ForEach(a => activitiesDTO.Add(_mapper.Map<ActivityDTO>(a)));
