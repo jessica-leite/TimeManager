@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TimeManager.Domain;
@@ -33,6 +34,12 @@ namespace TimeManager.Service
         public List<Activity> GetOngoing(int userId)
         {
             return _context.Activity.Where(a => a.UserId == userId && a.IsCompleted == false).ToList();
+        }
+
+        //TODO implement
+        public TimeSpan GetHoursPerWeek(int userId)
+        {
+            return new TimeSpan();
         }
 
         public ActivityDTO GetById(int id)

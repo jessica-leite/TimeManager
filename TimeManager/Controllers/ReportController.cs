@@ -8,10 +8,12 @@ namespace TimeManager.Controllers
     public class ReportController : ControllerBase
     {
         ReportService _service;
+        ActivityService _activityService;
 
-        public ReportController(ReportService service)
+        public ReportController(ReportService service, ActivityService activityService)
         {
             _service = service;
+            _activityService = activityService;
         }
 
         [HttpGet]
@@ -22,8 +24,14 @@ namespace TimeManager.Controllers
 
         [HttpGet("ongoing/{id}")]
         public ActionResult GetOngoingActivities(int id)
-            {
+        {
             return Ok(_service.GetOngoingActivities(id));
+        }
+
+        [HttpGet("week/{userId}")]
+        public ActionResult GetHoursPerWeek(int userId)
+        {
+            return Ok(_activityService.GetHoursPerWeek(userId));
         }
     }
 }
