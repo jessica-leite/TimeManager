@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeManager.Domain.Context;
 
 namespace TimeManager.Migrations
 {
     [DbContext(typeof(TimeManagerContext))]
-    partial class TimeManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20200917220304_CompletionTime")]
+    partial class CompletionTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +51,7 @@ namespace TimeManager.Migrations
                     b.ToTable("Activity");
                 });
 
-            modelBuilder.Entity("TimeManager.Domain.ActivityItem", b =>
+            modelBuilder.Entity("TimeManager.Domain.CompletionTime", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +71,7 @@ namespace TimeManager.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("ActivityItem");
+                    b.ToTable("CompletionTime");
                 });
 
             modelBuilder.Entity("TimeManager.Domain.User", b =>
@@ -117,10 +119,10 @@ namespace TimeManager.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TimeManager.Domain.ActivityItem", b =>
+            modelBuilder.Entity("TimeManager.Domain.CompletionTime", b =>
                 {
                     b.HasOne("TimeManager.Domain.Activity", "Activity")
-                        .WithMany("ActivityItems")
+                        .WithMany("CompletedHours")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

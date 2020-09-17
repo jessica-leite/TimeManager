@@ -10,7 +10,7 @@ namespace TimeManager.Domain
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
         public TimeSpan EstimatedHours { get; set; }
-        public IEnumerable<CompletionTime> CompletedHours { get; set; }
+        public IEnumerable<ActivityItem> ActivityItems { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }

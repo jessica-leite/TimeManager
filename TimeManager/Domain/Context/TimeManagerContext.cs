@@ -7,6 +7,7 @@ namespace TimeManager.Domain.Context
     {
         public DbSet<User> User { get; set; }
         public DbSet<Activity> Activity { get; set; }
+        public DbSet<ActivityItem> ActivityItem { get; set; }
 
         public TimeManagerContext(DbContextOptions options) : base(options)
         {
@@ -17,6 +18,7 @@ namespace TimeManager.Domain.Context
         {
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new ActivityMapping());
+            modelBuilder.ApplyConfiguration(new ActivityItemMapping());
         }
     }
 }

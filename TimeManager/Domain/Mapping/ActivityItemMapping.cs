@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TimeManager.Domain.Mapping
 {
-    public class CompletionTimeMapping : IEntityTypeConfiguration<CompletionTime>
+    public class ActivityItemMapping : IEntityTypeConfiguration<ActivityItem>
     {
-        public void Configure(EntityTypeBuilder<CompletionTime> builder)
+        public void Configure(EntityTypeBuilder<ActivityItem> builder)
         {
+            builder.HasKey(c => c.Id);
+
             builder.Property(c => c.Start)
                 .IsRequired();
 
@@ -14,7 +16,7 @@ namespace TimeManager.Domain.Mapping
                 .IsRequired();
 
             builder.HasOne(c => c.Activity)
-                .WithMany(a => a.CompletedHours);
+                .WithMany(a => a.ActivityItems);
         }
     }
 }

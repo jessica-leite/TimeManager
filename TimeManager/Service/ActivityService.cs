@@ -22,6 +22,7 @@ namespace TimeManager.Service
         public void Add(ActivityDTO activity)
         {
             //TODO implement cookies to get current user
+            //TODO find a better way to do it
             var activityModel = _mapper.Map<Activity>(activity);
             activityModel.UserId = 3;
 
@@ -29,6 +30,17 @@ namespace TimeManager.Service
             _context.SaveChanges();
 
             activity.Id = activityModel.Id;
+
+            if (activity.CompletedHours.TotalHours > 0)
+            {
+                var item = new ActivityItem();
+                item.ActivityId = activityModel.Id;
+                item.End = DateTime.Now;
+                item.Start = item.End - activity.CompletedHours;
+
+                _context.ActivityItem.Add(item);
+                _context.SaveChanges();
+            }
         }
 
         public List<Activity> GetOngoing(int userId)
