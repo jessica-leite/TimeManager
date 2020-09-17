@@ -19,5 +19,11 @@ namespace TimeManager.Controllers
         {
             return Ok(_service.GetTotalCompletedHours());
         }
+
+        [HttpGet("ongoing/{id}")]
+        public ActionResult GetOngoingActivities(int id)
+            {
+            return Ok(_service.GetOngoingActivities(id));
+        }
     }
 }

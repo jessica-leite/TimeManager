@@ -51,6 +51,7 @@ namespace TimeManager
                 cfg.CreateMap<User, UserDTO>();
                 cfg.CreateMap<ActivityDTO, Activity>();
                 cfg.CreateMap<Activity, ActivityDTO>();
+                cfg.CreateMap<Activity, OnGoingActivityDTO>();
             }); 
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

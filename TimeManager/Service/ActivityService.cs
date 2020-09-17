@@ -30,6 +30,11 @@ namespace TimeManager.Service
             activity.Id = activityModel.Id;
         }
 
+        public List<Activity> GetOngoing(int userId)
+        {
+            return _context.Activity.Where(a => a.UserId == userId && a.IsCompleted == false).ToList();
+        }
+
         public ActivityDTO GetById(int id)
         {
             var activityModel = _context.Activity.Find(id);
