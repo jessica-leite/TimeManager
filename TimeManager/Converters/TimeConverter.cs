@@ -16,7 +16,8 @@ namespace TimeManager.Converters
 
         public override void Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue($"{value.Hours}:{value.Minutes}");
+            var hours = value.Days * 24 + value.Hours;
+            writer.WriteStringValue($"{hours}:{value.Minutes}");
         }
     }
 }

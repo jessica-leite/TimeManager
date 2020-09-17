@@ -15,9 +15,9 @@ namespace TimeManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetTotalTime()
+        public ActionResult GetTotalCompletedHours()
         {
-            return Ok(_service.GetTotalTime());
+            return Ok(_service.GetTotalCompletedHours());
         }
     }
 }

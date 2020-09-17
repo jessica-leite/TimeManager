@@ -52,7 +52,7 @@ namespace TimeManager.Service
 
         public void Update(ActivityDTO activity)
         {
-            //TODO alterar atribuição de UserId
+            //TODO update userId
             var activityModel = _mapper.Map<Activity>(activity);
             activityModel.UserId = 3;
             _context.Activity.Update(activityModel);

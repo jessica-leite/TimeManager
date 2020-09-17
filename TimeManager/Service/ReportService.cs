@@ -12,13 +12,13 @@ namespace TimeManager.Service
             _activityService = activityService;
         }
 
-        public ReportDTO GetTotalTime()
+        public ReportDTO GetTotalCompletedHours()
         {
             var activities = _activityService.GetAll();
 
             var report = new ReportDTO();
 
-            activities.ForEach(a => report.TotalTime += a.CompletedHours);
+            activities.ForEach(a => report.TotalCompletedHours += a.CompletedHours);
 
             return report;
         }

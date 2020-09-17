@@ -45,7 +45,7 @@ namespace TimeManager
             services.AddScoped<ActivityService>();
             services.AddScoped<ReportService>();
 
-            var config = new AutoMapper.MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<UserDTO, User>();
                 cfg.CreateMap<User, UserDTO>();
