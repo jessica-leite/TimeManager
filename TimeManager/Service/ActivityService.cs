@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,15 +44,45 @@ namespace TimeManager.Service
             }
         }
 
-        public List<Activity> GetOngoing(int userId)
+        public TimeSpan GetHoursPerMonth(int userId)
         {
-            return _context.Activity.Where(a => a.UserId == userId && a.IsCompleted == false).ToList();
+            var activityItems = _context.ActivityItem
+                .Where(a => a.End.Month == DateTime.Now.Month)
+                .Include(a => a.Activity)
+                .Where(a => a.Activity.UserId == userId)
+                .ToList();
+
+            var completedHours = new TimeSpan();
+            activityItems.ForEach(a => completedHours += a.End - a.Start);
+
+            return completedHours;
         }
 
-        //TODO implement
+        public List<Activity> GetOngoing(int userId)
+        {
+            return _context.Activity
+                .Where(a => a.UserId == userId && a.IsCompleted == false)
+                .ToList();
+        }
+
         public TimeSpan GetHoursPerWeek(int userId)
         {
-            return new TimeSpan();
+            var today = DateTime.Now;
+            var days = today.DayOfWeek - DayOfWeek.Monday;
+            var mondayDay = today.Day - days;
+            var monday = new DateTime(today.Year, today.Month, mondayDay);
+
+            var dayOfWeek = DateTime.Now.DayOfWeek;
+            var activityItems = _context.ActivityItem
+                .Where(a => a.End >= monday)
+                .Include(a => a.Activity)
+                .Where(a => a.Activity.UserId == userId)
+                .ToList();
+
+            var completedHours = new TimeSpan();
+            activityItems.ForEach(a => completedHours += a.End - a.Start);
+
+            return completedHours;
         }
 
         public ActivityDTO GetById(int id)

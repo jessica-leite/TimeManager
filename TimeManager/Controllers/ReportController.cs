@@ -33,5 +33,11 @@ namespace TimeManager.Controllers
         {
             return Ok(_activityService.GetHoursPerWeek(userId));
         }
+
+        [HttpGet("month/{userId}")]
+        public ActionResult GetHoursPerMonth(int userId)
+        {
+            return Ok(_activityService.GetHoursPerMonth(userId));
+        }
     }
 }
