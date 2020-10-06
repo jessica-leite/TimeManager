@@ -44,6 +44,13 @@ namespace TimeManager.Service
             }
         }
 
+        public List<Activity> GetCompleted(int userId)
+        {
+            return _context.Activity
+                .Where(a => a.UserId == userId && a.IsCompleted == true)
+                .ToList();
+        }
+
         public TimeSpan GetHoursPerMonth(int userId)
         {
             var activityItems = _context.ActivityItem

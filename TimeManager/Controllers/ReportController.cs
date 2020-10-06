@@ -39,5 +39,12 @@ namespace TimeManager.Controllers
         {
             return Ok(_activityService.GetHoursPerMonth(userId));
         }
+
+        [HttpGet("completed/{userId}")]
+        public ActionResult GetCompleted(int userId)
+        {
+            return Ok(_activityService.GetCompleted(userId));
+        }
+
     }
 }
