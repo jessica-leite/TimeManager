@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,6 @@ using System.Linq;
 using TimeManager.Domain;
 using TimeManager.Domain.Context;
 using TimeManager.DTO;
-using System.Security.Claims;
 
 namespace TimeManager.Service
 {
@@ -21,12 +21,10 @@ namespace TimeManager.Service
             _mapper = mapper;
         }
 
-        public void Add(ActivityDTO activity)
+        public void Add(ActivityDTO activity, int userId)
         {
-            //TODO implement cookies to get current user
-            //TODO find a better way to do it
             var activityModel = _mapper.Map<Activity>(activity);
-            activityModel.UserId = 3;
+            activityModel.UserId = userId;
 
             _context.Activity.Add(activityModel);
             _context.SaveChanges();
@@ -104,19 +102,29 @@ namespace TimeManager.Service
         {
             var activities = _context.Activity
                 .Where(a => a.UserId == userId)
+               .Include(a => a.ActivityItems)
                 .ToList();
 
             var activitiesDTO = new List<ActivityDTO>();
-            activities.ForEach(a => activitiesDTO.Add(_mapper.Map<ActivityDTO>(a)));
-            //TODO fill CompletedHours
+            activities.ForEach(a =>
+            {
+                var activity = _mapper.Map<ActivityDTO>(a);
+
+                if (a.ActivityItems.Any())
+                {
+                    a.ActivityItems.ForAll(a => activity.CompletedHours += a.End - a.Start);
+                }
+
+                activitiesDTO.Add(activity);
+
+            });
             return activitiesDTO;
         }
 
-        public void Update(ActivityDTO activity)
+        public void Update(ActivityDTO activity, int userId)
         {
-            //TODO update userId
             var activityModel = _mapper.Map<Activity>(activity);
-            activityModel.UserId = 3;
+            activityModel.UserId = userId;
             _context.Activity.Update(activityModel);
             _context.SaveChanges();
         }

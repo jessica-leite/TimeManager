@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using TimeManager.DTO;
 using TimeManager.Service;
 
@@ -9,7 +8,7 @@ namespace TimeManager.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
-    public class ActivityController : ControllerBase
+    public class ActivityController : BaseController
     {
         private readonly ActivityService _service;
 
@@ -21,7 +20,7 @@ namespace TimeManager.Controllers
         [HttpPost]
         public ActionResult Create([FromBody] ActivityDTO activity)
         {
-            _service.Add(activity);
+            _service.Add(activity, GetCurrentUserId());
 
             var uri = Url.Action(nameof(GetById), new { id = activity.Id });
             return Created(uri, activity);
@@ -36,7 +35,7 @@ namespace TimeManager.Controllers
         [HttpGet]
         public ActionResult GetAll()
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userId = GetCurrentUserId();
             return Ok(_service.GetAll(userId));
         }
 
@@ -50,7 +49,7 @@ namespace TimeManager.Controllers
         [HttpPut]
         public ActionResult Update([FromBody] ActivityDTO activity)
         {
-            _service.Update(activity);
+            _service.Update(activity, GetCurrentUserId());
             return Ok(activity);
         }
     }

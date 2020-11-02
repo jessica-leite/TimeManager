@@ -6,7 +6,7 @@ namespace TimeManager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LoginController : ControllerBase
+    public class LoginController : BaseController
     {
         private readonly LoginService _service;
 

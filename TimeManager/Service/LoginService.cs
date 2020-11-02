@@ -1,12 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading;
-using TimeManager.Domain;
 using TimeManager.Domain.Context;
 using TimeManager.DTO;
 using TimeManager.Settings;

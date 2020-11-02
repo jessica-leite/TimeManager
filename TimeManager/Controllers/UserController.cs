@@ -8,7 +8,7 @@ namespace TimeManager.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly UserService _service;
 
