@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TimeManager.Service;
 
 namespace TimeManager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ReportController : ControllerBase
     {
         ReportService _service;
@@ -19,7 +22,8 @@ namespace TimeManager.Controllers
         [HttpGet]
         public ActionResult GetTotalCompletedHours()
         {
-            return Ok(_service.GetTotalCompletedHours());
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return Ok(_service.GetTotalCompletedHours(userId));
         }
 
         [HttpGet("ongoing/{id}")]

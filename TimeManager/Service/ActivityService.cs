@@ -6,6 +6,7 @@ using System.Linq;
 using TimeManager.Domain;
 using TimeManager.Domain.Context;
 using TimeManager.DTO;
+using System.Security.Claims;
 
 namespace TimeManager.Service
 {
@@ -99,16 +100,15 @@ namespace TimeManager.Service
             return _mapper.Map<ActivityDTO>(activityModel);
         }
 
-        public List<ActivityDTO> GetAll()
+        public List<ActivityDTO> GetAll(int userId)
         {
-            //TODO update userId
             var activities = _context.Activity
-                .Where(a => a.UserId == 3)
+                .Where(a => a.UserId == userId)
                 .ToList();
 
             var activitiesDTO = new List<ActivityDTO>();
             activities.ForEach(a => activitiesDTO.Add(_mapper.Map<ActivityDTO>(a)));
-
+            //TODO fill CompletedHours
             return activitiesDTO;
         }
 

@@ -5,9 +5,9 @@ using TimeManager.Service;
 
 namespace TimeManager.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly UserService _service;

@@ -15,9 +15,9 @@ namespace TimeManager.Service
             _mapper = mapper;
         }
 
-        public ReportDTO GetTotalCompletedHours()
+        public ReportDTO GetTotalCompletedHours(int userId)
         {
-            var activities = _activityService.GetAll();
+            var activities = _activityService.GetAll(userId);
 
             var report = new ReportDTO();
 

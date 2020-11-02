@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TimeManager.DTO;
 using TimeManager.Service;
 
@@ -6,6 +8,7 @@ namespace TimeManager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ActivityController : ControllerBase
     {
         private readonly ActivityService _service;
@@ -33,7 +36,8 @@ namespace TimeManager.Controllers
         [HttpGet]
         public ActionResult GetAll()
         {
-            return Ok(_service.GetAll());
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return Ok(_service.GetAll(userId));
         }
 
         [HttpDelete("{id}")]
