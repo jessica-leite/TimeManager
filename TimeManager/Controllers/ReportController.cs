@@ -6,7 +6,7 @@ namespace TimeManager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class ReportController : BaseController
     {
         ReportService _service;
@@ -21,7 +21,8 @@ namespace TimeManager.Controllers
         [HttpGet]
         public ActionResult GetTotalCompletedHours()
         {
-            var userId = GetCurrentUserId();
+            //var userId = GetCurrentUserId();
+            var userId = 3;
             return Ok(_service.GetTotalCompletedHours(userId));
         }
 

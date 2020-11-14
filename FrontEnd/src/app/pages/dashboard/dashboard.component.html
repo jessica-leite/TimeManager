@@ -1,0 +1,87 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-5 col-lg-6">
+          <div class="card card-stats mb-6 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Horas realizadas</h5>
+                  <span class="h2 font-weight-bold mb-0">{{completedHours}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="far fa-clock"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Mensal</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-5 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Atividades concluídas</h5>
+                  <span class="h2 font-weight-bold mb-0">924</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="far fa-check-square"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                <span class="text-nowrap">Mensal</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 mb-12 mb-xl-12">
+      <div class="card shadow">
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Atividade</th>
+                <th scope="col">Tempo previsto</th>
+                <th scope="col">Tempo realizado</th>
+                <th scope="col">Tempo restante</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let activity of activities">
+                <th scope="row">
+                  {{activity.name}}
+                </th>
+                <td>
+                  {{activity.estimatedTime}}
+                </td>
+                <td>
+                  {{activity.completedTime}}
+                </td>
+                <td>
+                  {{activity.estimatedTime - activity.completedTime}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
