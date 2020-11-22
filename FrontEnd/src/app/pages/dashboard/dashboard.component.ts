@@ -41,18 +41,21 @@ export class DashboardComponent implements OnInit {
     this.activities = [{
       name: 'atividade1',
       estimatedTime: 20,
-      completedTime: 5
+      completedTime: 5,
+      remainingTime: 15
     },
-  {
-    name: 'atividade2',
-    estimatedTime: 100,
-    completedTime: 50
-  },
-  {
-    name: 'atividade3',
-    estimatedTime: 100,
-    completedTime: 10
-  }];
+    {
+      name: 'atividade2',
+      estimatedTime: 100,
+      completedTime: 50,
+      remainingTime: 50
+    },
+    {
+      name: 'atividade3',
+      estimatedTime: 100,
+      completedTime: 10,
+      remainingTime: 90
+    }];
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
