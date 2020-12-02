@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
   public completedHours: any;
+  public completedActivities: any;
   public activities: any;
 
   constructor(private http: HttpClient) { }
@@ -56,6 +57,9 @@ export class DashboardComponent implements OnInit {
       completedTime: 10,
       remainingTime: 90
     }];
+
+    this.completedHours = 257;
+    this.completedActivities = 18;
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
