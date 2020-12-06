@@ -13,7 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ActivityComponent } from './pages/activity/activity.component';
-import { CompletedHoursComponent } from './completed-hours/completed-hours.component';
+import { CompletedHoursComponent } from './pages/completed-hours/completed-hours.component';
 
 
 @NgModule({

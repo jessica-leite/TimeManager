@@ -94,4 +94,7 @@ export class DashboardComponent implements OnInit {
     this.salesChart.update();
   }
 
+  public addHours(){
+    window.alert('oi');
+  }
 }
