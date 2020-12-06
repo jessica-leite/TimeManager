@@ -72,14 +72,15 @@
                   {{activity.remainingTime}}
                 </td>
                 <td>
-                  <div (click)="addHours()" class="icon icon-shape bg-success text-white rounded-circle shadow">
+                  <a routerLinkActive="active" routerLink='/activity'
+                    class="icon icon-shape bg-success text-white rounded-circle shadow">
                     <i class="fas fa-plus"></i>
-                  </div>
+                  </a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+    </div>
   </div>
-</div>
