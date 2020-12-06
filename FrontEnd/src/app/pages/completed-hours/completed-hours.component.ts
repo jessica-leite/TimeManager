@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-completed-hours',
@@ -8,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class CompletedHoursComponent implements OnInit {
 
   public activities: any;
-  constructor() { }
+  public completedTime: string;
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
 
     this.activities = [];
   }
 
+  public addHours(time: any){
+    window.alert(time);
+    this.route.navigate(['/dashboard'])
+  }
 }

@@ -93,8 +93,4 @@ export class DashboardComponent implements OnInit {
     this.salesChart.data.datasets[0].data = this.data;
     this.salesChart.update();
   }
-
-  public addHours(){
-    window.alert('oi');
-  }
 }

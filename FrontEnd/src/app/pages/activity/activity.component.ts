@@ -12,4 +12,7 @@ export class ActivityComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public add(){
+    window.alert('oi');
+  }
 }
