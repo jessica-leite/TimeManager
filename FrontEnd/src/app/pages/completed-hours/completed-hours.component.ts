@@ -19,6 +19,6 @@ export class CompletedHoursComponent implements OnInit {
 
   public addHours(time: any){
     window.alert(time);
-    this.route.navigate(['/dashboard'])
+    this.route.navigate(['/dashboard']);
   }
 }

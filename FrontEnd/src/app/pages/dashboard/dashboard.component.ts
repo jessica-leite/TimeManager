@@ -27,18 +27,7 @@ export class DashboardComponent implements OnInit {
   public completedActivities: any;
   public activities: any;
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-
-    // this.http.get('http://localhost:50292/api/report')
-    // .subscribe((returnedStuff) => {
-    // console.log(returnedStuff);
-    // }); 
-
-    // this.http.get('http://localhost:50292/api/report').subscribe( (data: any) => {
-    //   console.log('received data: ' + data)
-    // });
+  constructor(private http: HttpClient) { 
     this.activities = [{
       name: 'atividade1',
       estimatedTime: 20,
@@ -60,6 +49,18 @@ export class DashboardComponent implements OnInit {
 
     this.completedHours = 257;
     this.completedActivities = 18;
+  }
+
+  ngOnInit() {
+
+    // this.http.get('http://localhost:50292/api/report')
+    // .subscribe((returnedStuff) => {
+    // console.log(returnedStuff);
+    // }); 
+
+    // this.http.get('http://localhost:50292/api/report').subscribe( (data: any) => {
+    //   console.log('received data: ' + data)
+    // });
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
