@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
       remainingTime: 90
     }];
 
-    this.completedHours = 257;
-    this.completedActivities = 18;
+    this.completedHours = 65;
+    this.completedActivities = 8;
   }
 }
