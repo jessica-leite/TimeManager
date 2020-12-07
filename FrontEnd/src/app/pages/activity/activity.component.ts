@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activity',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivityComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
 
-  public add(){
-    window.alert('oi');
+  public add(title: string, description: string, estimatedHours: any){
+    window.alert(title + ', ' + description + ', ' + estimatedHours);
+    this.route.navigate(['/dashboard']);
   }
 }
