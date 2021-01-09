@@ -13,7 +13,8 @@ export class ActivityComponent implements OnInit {
   }
 
   public add(title: string, description: string, estimatedHours: any){
-    this.http.post('api/activity', {Name: title, Description: description, EstimatedHours: estimatedHours});
+    this.http.post('api/activity', {Name: title, Description: description, EstimatedHours: estimatedHours})
+      .subscribe();
 
     history.back();
   }
