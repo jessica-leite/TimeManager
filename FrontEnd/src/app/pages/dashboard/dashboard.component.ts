@@ -32,35 +32,19 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.http.get('http://localhost:50292/api/report')
-    // .subscribe((returnedStuff) => {
-    // console.log(returnedStuff);
-    // }); 
+    this.http.get('api/report')
+    .subscribe((data) => {
+      this.completedHours = Object.values(data);
+    });
+    
+   this.http.get('api/report/totalCompleted')
+   .subscribe((data) => {
+     this.completedActivities = data;
+   });
 
-    // this.http.get('http://localhost:50292/api/report').subscribe( (data: any) => {
-    //   console.log('received data: ' + data)
-    // });
-
-    this.activities = [{
-      name: 'atividade1',
-      estimatedTime: 20,
-      completedTime: 5,
-      remainingTime: 15
-    },
-    {
-      name: 'atividade2',
-      estimatedTime: 100,
-      completedTime: 50,
-      remainingTime: 50
-    },
-    {
-      name: 'atividade3',
-      estimatedTime: 100,
-      completedTime: 10,
-      remainingTime: 90
-    }];
-
-    this.completedHours = 65;
-    this.completedActivities = 8;
+   this.http.get('api/activity')
+   .subscribe((data) => {
+     this.activities = data;
+   });
   }
 }
