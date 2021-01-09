@@ -26,8 +26,14 @@ namespace TimeManager.Controllers
             return Ok(_service.GetTotalCompletedHours(userId));
         }
 
+        [HttpGet("totalCompleted")]
+        public ActionResult<int> GetTotalConcludedByUserId()
+        {
+            return Ok(_service.GetTotalCompletedActivities(GetCurrentUserId()));
+        }
+
         [HttpGet("ongoing/{id}")]
-        public ActionResult GetOngoingActivities(int id)
+        public ActionResult GetOngoingActivity(int id)
         {
             return Ok(_service.GetOngoingActivities(id));
         }

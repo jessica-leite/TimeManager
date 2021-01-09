@@ -7,7 +7,7 @@ namespace TimeManager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class ActivityController : BaseController
     {
         private readonly ActivityService _service;
@@ -33,7 +33,7 @@ namespace TimeManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult<ActivityDTO> GetAll()
         {
             var userId = GetCurrentUserId();
             return Ok(_service.GetAll(userId));

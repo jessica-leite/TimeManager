@@ -32,6 +32,19 @@ namespace TimeManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => 
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                    builder =>
+                                    {
+                                        builder.WithOrigins("http://localhost:4200")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                                    });
+            });
+
+            services.AddControllers();
+
             services.AddDbContext<TimeManagerContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TimeManagerConnection")));
 
             services.AddControllers()
@@ -92,7 +105,9 @@ namespace TimeManager
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200");
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyMethod();
+                        builder.AllowAnyHeader();
                     });
             });
 
@@ -110,8 +125,8 @@ namespace TimeManager
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseCors(MyAllowSpecificOrigins);
+
 
             app.UseAuthentication();
             app.UseAuthorization();

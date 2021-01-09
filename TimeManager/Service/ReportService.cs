@@ -34,5 +34,10 @@ namespace TimeManager.Service
 
             return dto;
         }
+
+        public int GetTotalCompletedActivities(int userId)
+        {
+            return _activityService.GetTotalCompleted(userId);
+        }
     }
 }

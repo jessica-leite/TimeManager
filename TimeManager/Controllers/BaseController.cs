@@ -7,7 +7,8 @@ namespace TimeManager.Controllers
     {
         protected int GetCurrentUserId()
         {
-            return int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return 3;
+            //return int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
         }
     }
 }

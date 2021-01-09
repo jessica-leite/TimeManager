@@ -43,10 +43,17 @@ namespace TimeManager.Service
             }
         }
 
+        public int GetTotalCompleted(int userId)
+        {
+            return _context.Activity
+                .Where(a => a.IsCompleted)
+                .Count();
+        }
+
         public List<Activity> GetCompleted(int userId)
         {
             return _context.Activity
-                .Where(a => a.UserId == userId && a.IsCompleted == true)
+                .Where(a => a.UserId == userId && a.IsCompleted)
                 .ToList();
         }
 
@@ -67,7 +74,7 @@ namespace TimeManager.Service
         public List<Activity> GetOngoing(int userId)
         {
             return _context.Activity
-                .Where(a => a.UserId == userId && a.IsCompleted == false)
+                .Where(a => a.UserId == userId && !a.IsCompleted)
                 .ToList();
         }
 
@@ -114,6 +121,9 @@ namespace TimeManager.Service
                 {
                     a.ActivityItems.ForAll(a => activity.CompletedHours += a.End - a.Start);
                 }
+
+                var remainingTime = activity.EstimatedHours - activity.CompletedHours;
+                activity.RemainingTime = remainingTime > TimeSpan.Zero ? remainingTime : TimeSpan.Zero;
 
                 activitiesDTO.Add(activity);
 

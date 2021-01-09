@@ -16,5 +16,8 @@ namespace TimeManager.DTO
 
         [JsonConverter(typeof(TimeConverter))]
         public TimeSpan CompletedHours { get; set; }
+
+        [JsonConverter(typeof(TimeConverter))]
+        public TimeSpan RemainingTime { get; set; }
     }
 }
