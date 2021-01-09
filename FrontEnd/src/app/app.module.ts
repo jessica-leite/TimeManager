@@ -12,8 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { ActivityComponent } from './pages/activity/activity.component';
-import { CompletedHoursComponent } from './pages/completed-hours/completed-hours.component';
 
 
 @NgModule({
@@ -29,9 +27,7 @@ import { CompletedHoursComponent } from './pages/completed-hours/completed-hours
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    ActivityComponent,
-    CompletedHoursComponent
+    AuthLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

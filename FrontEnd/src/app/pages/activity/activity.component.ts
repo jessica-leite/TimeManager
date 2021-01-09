@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-activity',
@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./activity.component.css']
 })
 export class ActivityComponent implements OnInit {
-
-  constructor(private route: Router) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   public add(title: string, description: string, estimatedHours: any){
-    window.alert(title + ', ' + description + ', ' + estimatedHours);
-    this.route.navigate(['/dashboard']);
+    this.http.post('api/activity', {Name: title, Description: description, EstimatedHours: estimatedHours});
+
+    history.back();
   }
 }

@@ -1,15 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
-
-
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from "../../variables/charts";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,11 +8,6 @@ import {
 })
 export class DashboardComponent implements OnInit {
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
   public completedHours: any;
   public completedActivities: any;
   public activities: any;
