@@ -11,7 +11,9 @@
         <div class="col-lg-6 col-md-8">
             <div class="card bg-secondary shadow border-0">
                 <div class="card-header bg-transparent pb-5">
-                    <div class="text-muted text-center mt-2 mb-4">Nova Atividade</div>
+                    <div *ngIf="this.action === 'activity'" class="text-muted text-center mt-2 mb-4">Nova Atividade</div>
+                    <div *ngIf="this.action === 'edit'" class="text-muted text-center mt-2 mb-4">Editar Atividade</div>
+                    <div *ngIf="this.action === 'delete'" class="text-muted text-center mt-2 mb-4">Remover Atividade</div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">
                     <form role="form">
@@ -39,8 +41,14 @@
                                 <input #estimatedHours class="form-control" placeholder="Tempo previsto" type="time">
                             </div>
                         </div>
-                        <div class="text-center">
-                            <button type="button" (click)="add(title.value, description.value, estimatedHours.value)" class="btn btn-primary mt-4">Ok</button>
+                        <div *ngIf="this.action === 'activity'" class="text-center">
+                            <button type="button" (click)="add(title.value, description.value, estimatedHours.value)" class="btn btn-success mt-4">Salvar</button>
+                        </div>
+                        <div *ngIf="this.action === 'edit'" class="text-center">
+                            <button type="button" (click)="update(title.value, description.value, estimatedHours.value)" class="btn btn-success mt-4">Salvar</button>
+                        </div>
+                        <div *ngIf="this.action === 'delete'" class="text-center">
+                            <button type="button" (click)="delete()" class="btn btn-warning mt-4">Remover</button>
                         </div>
                     </form>
                 </div>

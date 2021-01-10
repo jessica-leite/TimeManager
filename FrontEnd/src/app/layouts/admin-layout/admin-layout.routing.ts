@@ -9,5 +9,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'activity',    component: ActivityComponent},
-    { path: 'hours',    component: CompletedHoursComponent}
+    { path: 'hours',    component: CompletedHoursComponent},
+    { path: 'edit/:id',    component: ActivityComponent},
+    { path: 'delete/:id',    component: ActivityComponent}
 ];

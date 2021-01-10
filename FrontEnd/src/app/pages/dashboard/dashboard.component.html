@@ -50,7 +50,10 @@
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col text-right">
-                <a href="#/activity" class="btn btn-sm btn-primary">Nova Atividade</a>
+                <a href="#/activity" class="btn btn-sm btn-success">
+                  <i class="fas fa-plus"></i>
+                  Nova Atividade
+                </a>
               </div>
             </div>
           </div>
@@ -62,6 +65,8 @@
                 <th scope="col">Tempo realizado</th>
                 <th scope="col">Tempo restante</th>
                 <th scope="col">Adicionar horas</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -80,8 +85,20 @@
                 </td>
                 <td>
                   <a routerLinkActive="active" routerLink='/hours'
-                    class="icon icon-shape bg-success text-white rounded-circle shadow">
-                    <i class="fas fa-plus"></i>
+                    class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                    <i class="far fa-clock"></i>
+                  </a>
+                </td>
+                <td>
+                  <a routerLinkActive="active" [routerLink]="['/edit', activity.id]"
+                    class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="fas fa-pen"></i>
+                  </a>
+                </td>
+                <td>
+                  <a routerLinkActive="active" [routerLink]="['/delete', activity.id]"
+                    class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                    <i class="fas fa-trash-alt"></i>
                   </a>
                 </td>
               </tr>
