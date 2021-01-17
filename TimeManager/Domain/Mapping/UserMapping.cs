@@ -9,6 +9,9 @@ namespace TimeManager.Domain.Mapping
         {
             builder.HasKey(u => u.Id);
 
+            builder.Property(u => u.Name)
+                .IsRequired();
+
             builder.Property(u => u.Email)
                 .IsRequired();
 
@@ -16,9 +19,6 @@ namespace TimeManager.Domain.Mapping
                 .IsRequired();
 
             builder.Property(u => u.CreationDate)
-                .IsRequired();
-
-            builder.Property(u => u.SecretAnswer)
                 .IsRequired();
         }
     }
