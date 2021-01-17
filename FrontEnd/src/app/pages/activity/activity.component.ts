@@ -11,9 +11,15 @@ export class ActivityComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   public action: any;
+  public id: any;
+  public name: any;
+  public estimatedTime: any;
 
   ngOnInit(): void {
     this.action = this.route.snapshot.url[0].path;
+    this.id = history.state.data.id;
+    this.name = history.state.data.name;
+    this.estimatedTime = history.state.data.estimatedHours;
   }
 
   public add(title: string, description: string, estimatedHours: any) {

@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label>Título</label>
                             <div class="input-group input-group-alternative mb-3">
-                                <input #title class="form-control" type="text">
+                                <input #title class="form-control" type="text" value={{id}}>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-pen"></i></span>
                                 </div>
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label>Descrição</label>
                             <div class="input-group input-group-alternative mb-3">
-                                <input #description class="form-control" type="text">
+                                <input #description class="form-control" type="text" value={{name}}>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-pen"></i></span>
                                 </div>
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label>Tempo Previsto</label>
                             <div class="input-group input-group-alternative">
-                                <input #estimatedHours class="form-control" placeholder="Tempo previsto" type="time">
+                                <input #estimatedHours class="form-control" placeholder="Tempo previsto" value={{estimatedTime}}>
                             </div>
                         </div>
                         <div *ngIf="this.action === 'activity'" class="text-center">
