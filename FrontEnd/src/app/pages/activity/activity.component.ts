@@ -18,15 +18,11 @@ export class ActivityComponent implements OnInit {
 
   public add(title: string, description: string, estimatedHours: any) {
     this.http.post('api/activity', { Name: title, Description: description, EstimatedHours: estimatedHours })
-      .subscribe();
-
-    history.back();
+      .subscribe(() => history.back());
   }
 
   public delete() {
     this.http.delete('api/activity/' + this.route.snapshot.paramMap.get('id'))
-      .subscribe();
-
-    history.back();
+      .subscribe(() => history.back());
   }
 }
