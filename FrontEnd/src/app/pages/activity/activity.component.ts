@@ -18,10 +18,10 @@ export class ActivityComponent implements OnInit {
 
   ngOnInit(): void {
     this.action = this.route.snapshot.url[0].path;
-    this.id = history.state.data.id;
-    this.name = history.state.data.name;
-    this.estimatedTime = history.state.data.estimatedHours;
-    this.activityDescription = history.state.data.description;
+    this.id = history.state.data?.id;
+    this.name = history.state.data?.name;
+    this.estimatedTime = history.state.data?.estimatedHours;
+    this.activityDescription = history.state.data?.description;
   }
 
   public add(title: string, description: string, estimatedHours: any) {

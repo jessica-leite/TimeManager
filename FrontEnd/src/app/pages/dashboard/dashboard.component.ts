@@ -35,9 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToActivity(method: string, id: any, name: any, description: any, estimatedHours: any) {
-    console.log('going....');
     var url = '/' + method + '/' + id;
-    console.log(url);
     this.router.navigate([url], { state: { data: { id, name, description, estimatedHours } } });
   }
 }
