@@ -33,4 +33,9 @@ export class ActivityComponent implements OnInit {
     this.http.delete('api/activity/' + this.route.snapshot.paramMap.get('id'))
       .subscribe(() => history.back());
   }
+
+  public update(title: any, description: any, estimatedHours: any){
+    this.http.put('api/activity', { Id:this.id, Name: title, Description: description, EstimatedHours: estimatedHours })
+      .subscribe(() => history.back());
+  }
 }

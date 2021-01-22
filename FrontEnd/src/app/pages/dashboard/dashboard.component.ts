@@ -34,7 +34,10 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  goToActivity(id: any, name: any, description: any, estimatedHours: any) {
-    this.router.navigate(['/delete/' + id], { state: { data: { id, name, description, estimatedHours } } });
+  goToActivity(method: string, id: any, name: any, description: any, estimatedHours: any) {
+    console.log('going....');
+    var url = '/' + method + '/' + id;
+    console.log(url);
+    this.router.navigate([url], { state: { data: { id, name, description, estimatedHours } } });
   }
 }
