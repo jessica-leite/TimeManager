@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  goToActivity(id: any, name: any, estimatedHours: any) {
-    this.router.navigate(['/delete/' + id], { state: { data: { id, name, estimatedHours } } });
+  goToActivity(id: any, name: any, description: any, estimatedHours: any) {
+    this.router.navigate(['/delete/' + id], { state: { data: { id, name, description, estimatedHours } } });
   }
 }
