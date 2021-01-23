@@ -121,7 +121,7 @@ namespace TimeManager.Service
         public List<ActivityDTO> GetAll(int userId)
         {
             var activities = _context.Activity
-                .Where(a => a.UserId == userId)
+                .Where(a => a.UserId == userId && !a.IsCompleted)
                .Include(a => a.ActivityItems)
                 .ToList();
 

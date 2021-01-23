@@ -15,6 +15,7 @@ export class ActivityComponent implements OnInit {
   public name: any;
   public estimatedTime: any;
   public activityDescription: any;
+  public isCompleted: any;
 
   ngOnInit(): void {
     this.action = this.route.snapshot.url[0].path;
@@ -22,6 +23,7 @@ export class ActivityComponent implements OnInit {
     this.name = history.state.data?.name;
     this.estimatedTime = history.state.data?.estimatedHours;
     this.activityDescription = history.state.data?.description;
+    this.isCompleted = history.state.data?.isCompleted;
   }
 
   public add(title: string, description: string, estimatedHours: any) {
@@ -35,7 +37,11 @@ export class ActivityComponent implements OnInit {
   }
 
   public update(title: any, description: any, estimatedHours: any){
-    this.http.put('api/activity', { Id:this.id, Name: title, Description: description, EstimatedHours: estimatedHours })
+    this.http.put('api/activity', { Id:this.id, Name: title, Description: description, EstimatedHours: estimatedHours, IsCompleted: this.isCompleted })
       .subscribe(() => history.back());
+  }
+
+  public change(){
+    this.isCompleted = !this.isCompleted;
   }
 }

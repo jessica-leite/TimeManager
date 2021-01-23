@@ -90,13 +90,13 @@
                   </a>
                 </td>
                 <td>
-                  <a routerLinkActive="active" (click)="goToActivity('edit', activity.id, activity.name, activity.description, activity.estimatedHours)"
+                  <a routerLinkActive="active" (click)="goToActivity('edit', activity.id, activity.name, activity.description, activity.estimatedHours, activity.isCompleted)"
                     class="icon icon-shape bg-yellow text-white rounded-circle shadow">
                     <i class="fas fa-pen"></i>
                   </a>
                 </td>
                 <td>
-                  <a routerLinkActive="active" (click)="goToActivity('delete', activity.id, activity.name, activity.description, activity.estimatedHours)"
+                  <a routerLinkActive="active" (click)="goToActivity('delete', activity.id, activity.name, activity.description, activity.estimatedHours, activity.isCompleted)"
                     class="icon icon-shape bg-warning text-white rounded-circle shadow">
                     <i class="fas fa-trash-alt"></i>
                   </a>

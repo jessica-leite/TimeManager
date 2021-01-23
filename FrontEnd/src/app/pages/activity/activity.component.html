@@ -38,9 +38,15 @@
                         <div class="form-group">
                             <label>Tempo Previsto</label>
                             <div class="input-group input-group-alternative">
-                                <input #estimatedHours class="form-control" placeholder="Tempo previsto" value={{estimatedTime}}>
+                                <input #estimatedHours class="form-control" value={{estimatedTime}}>
                             </div>
                         </div>
+                        <div *ngIf="this.action === 'edit'" class="custom-control custom-control-alternative custom-checkbox">
+                            <input class="custom-control-input" id=" customCheckIsCompleted" type="checkbox" (change)="change()">
+                            <label class="custom-control-label" for=" customCheckIsCompleted">
+                              <span>Concluída</span>
+                            </label>
+                          </div>
                         <div *ngIf="this.action === 'activity'" class="text-center">
                             <button type="button" (click)="add(title.value, description.value, estimatedHours.value)" class="btn btn-success mt-4">Salvar</button>
                         </div>
