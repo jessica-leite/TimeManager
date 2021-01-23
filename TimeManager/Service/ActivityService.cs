@@ -59,11 +59,12 @@ namespace TimeManager.Service
 
         public void AddHours(HoursDTO hours)
         {
+            var now = DateTime.Now;
             _context.ActivityItem.Add(new ActivityItem
             {
                 ActivityId = hours.Id,
-                End = DateTime.Now,
-                Start = DateTime.Now - hours.Time
+                End = now,
+                Start = now - hours.Time
             });
 
             _context.SaveChanges();
