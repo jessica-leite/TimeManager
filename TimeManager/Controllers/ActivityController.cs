@@ -52,5 +52,12 @@ namespace TimeManager.Controllers
             _service.Update(activity, GetCurrentUserId());
             return Ok(activity);
         }
+
+        [HttpPost("hours")]
+        public ActionResult AddHours([FromBody] HoursDTO hours)
+        {
+            _service.AddHours(hours);
+            return Ok();
+        }
     }
 }

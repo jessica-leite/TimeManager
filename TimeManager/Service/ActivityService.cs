@@ -57,6 +57,18 @@ namespace TimeManager.Service
                 .ToList();
         }
 
+        public void AddHours(HoursDTO hours)
+        {
+            _context.ActivityItem.Add(new ActivityItem
+            {
+                ActivityId = hours.Id,
+                End = DateTime.Now,
+                Start = DateTime.Now - hours.Time
+            });
+
+            _context.SaveChanges();
+        }
+
         public TimeSpan GetHoursPerMonth(int userId)
         {
             var activityItems = _context.ActivityItem
