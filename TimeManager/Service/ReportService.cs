@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using TimeManager.Domain.Context;
 using TimeManager.DTO;
 
 namespace TimeManager.Service
@@ -8,20 +11,26 @@ namespace TimeManager.Service
     {
         private readonly IMapper _mapper;
         ActivityService _activityService;
+        private readonly TimeManagerContext _context;
 
-        public ReportService(ActivityService activityService, IMapper mapper)
+
+        public ReportService(ActivityService activityService, IMapper mapper, TimeManagerContext context)
         {
             _activityService = activityService;
             _mapper = mapper;
+            _context = context;
         }
 
         public ReportDTO GetTotalCompletedHours(int userId)
         {
-            var activities = _activityService.GetAll(userId);
+            var activityItems = _context.ActivityItem
+                .Include(a => a.Activity)
+                .Where(i => i.Activity.UserId == userId)
+                .Select(x => x.End - x.Start)
+                .ToList();
 
             var report = new ReportDTO();
-
-            activities.ForEach(a => report.TotalCompletedHours += a.CompletedHours);
+            activityItems.ForEach(a => { report.TotalCompletedHours += a; });
 
             return report;
         }
