@@ -36,6 +36,11 @@ export class DashboardComponent implements OnInit {
 
   goToActivity(method: string, id: any, name: any, description: any, estimatedHours: any) {
     var url = '/' + method + '/' + id;
+
     this.router.navigate([url], { state: { data: { id, name, description, estimatedHours } } });
+  }
+
+  addHours(id: any, name: any, description: any) {
+    this.router.navigate(['/hours'], { state: { data: { id, name, description } } });
   }
 }

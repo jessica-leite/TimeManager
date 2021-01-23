@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-completed-hours',
@@ -9,16 +9,20 @@ import { Router } from '@angular/router';
 export class CompletedHoursComponent implements OnInit {
 
   public activities: any;
-  public completedTime: string;
-  constructor(private route: Router) { }
+  public id: any;
+  public name: any;
+  public activityDescription: any;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-
-    this.activities = [];
+    this.id = history.state.data.id;
+    this.name = history.state.data.name;
+    this.activityDescription = history.state.data.description;
   }
 
   public addHours(time: any){
-    window.alert(time);
-    this.route.navigate(['/dashboard']);
+    this.http.post('api/activity/hours', { Id: this.id, Time: time })
+      .subscribe(() => history.back());
   }
 }

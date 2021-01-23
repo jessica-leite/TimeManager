@@ -84,7 +84,7 @@
                   {{activity.remainingTime}}
                 </td>
                 <td>
-                  <a routerLinkActive="active" routerLink='/hours'
+                  <a routerLinkActive="active" (click)="addHours(activity.id, activity.name, activity.description)"
                     class="icon icon-shape bg-primary text-white rounded-circle shadow">
                     <i class="far fa-clock"></i>
                   </a>
